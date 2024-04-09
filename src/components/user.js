@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import axios from "axios";
 import {
   UserListContainer,
   UserListTable,
@@ -24,15 +23,12 @@ const UserList = () => {
 
   const fetchUsers = async () => {
     try {
-      // const response = await axios.get("http://localhost:3001/api/users");
-      //setUsers(response.data);
-      setUsers([
-        {
-          "name": "john",
-          "email": "john@gmail.com",
-          "phone": "+44-77467384955"
-        }
-      ])
+      const response = await fetch("https://assignmentbackend-9eic.onrender.com//api/users");
+      if (!response.ok) {
+        throw new Error("Failed to fetch users");
+      }
+      const data = await response.json();
+      setUsers(data);
     } catch (error) {
       console.error(error);
     }
@@ -48,7 +44,13 @@ const UserList = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // await axios.post("http://localhost:3001/api/users", formData);
+      await fetch("https://assignmentbackend-9eic.onrender.com//api/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
       fetchUsers();
       setFormData({ name: "", email: "", phone: "" });
       setFormValid(false);
@@ -60,7 +62,9 @@ const UserList = () => {
 
   const handleDelete = async (name) => {
     try {
-      // await axios.delete(`http://localhost:3001/api/users/${name}`);
+      await fetch(`https://assignmentbackend-9eic.onrender.com//api/users/${name}`, {
+        method: "DELETE",
+      });
       fetchUsers();
     } catch (error) {
       console.error(error);
@@ -82,8 +86,8 @@ const UserList = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
-            <tr key={user.id}>
+          {users.map((user, index) => (
+            <tr key={index}>
               <TableCell>{user.name}</TableCell>
               <TableCell>{user.email}</TableCell>
               <TableCell>{user.phone}</TableCell>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {axios} from "axios";
+// import axios from "axios";
 import {
   UserListContainer,
   UserListTable,
@@ -24,7 +24,7 @@ const UserList = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/api/users");
+      // const response = await axios.get("http://localhost:3001/api/users");
       setUsers(response.data);
     } catch (error) {
       console.error(error);
@@ -41,7 +41,7 @@ const UserList = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3001/api/users", formData);
+      // await axios.post("http://localhost:3001/api/users", formData);
       fetchUsers();
       setFormData({ name: "", email: "", phone: "" });
       setFormValid(false);
@@ -53,7 +53,7 @@ const UserList = () => {
 
   const handleDelete = async (name) => {
     try {
-      await axios.delete(`http://localhost:3001/api/users/${name}`);
+      // await axios.delete(`http://localhost:3001/api/users/${name}`);
       fetchUsers();
     } catch (error) {
       console.error(error);

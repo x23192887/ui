@@ -26,6 +26,13 @@ const UserList = () => {
     try {
       // const response = await axios.get("http://localhost:3001/api/users");
       //setUsers(response.data);
+      setUsers([
+        {
+          "name": "john",
+          "email": "john@gmail.com",
+          "phone": "+44-77467384955"
+        }
+      ])
     } catch (error) {
       console.error(error);
     }

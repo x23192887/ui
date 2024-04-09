@@ -23,7 +23,7 @@ const UserList = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch("https://assignmentbackend-9eic.onrender.com//api/users");
+      const response = await fetch("https://assignmentbackend-9eic.onrender.com/api/users");
       if (!response.ok) {
         throw new Error("Failed to fetch users");
       }
@@ -44,7 +44,7 @@ const UserList = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await fetch("https://assignmentbackend-9eic.onrender.com//api/users", {
+      await fetch("https://assignmentbackend-9eic.onrender.com/api/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -62,7 +62,7 @@ const UserList = () => {
 
   const handleDelete = async (name) => {
     try {
-      await fetch(`https://assignmentbackend-9eic.onrender.com//api/users/${name}`, {
+      await fetch(`https://assignmentbackend-9eic.onrender.com/api/users/${name}`, {
         method: "DELETE",
       });
       fetchUsers();
